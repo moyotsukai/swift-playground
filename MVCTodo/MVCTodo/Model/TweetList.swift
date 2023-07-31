@@ -35,19 +35,3 @@ class TweetList: NSObject {
 
 }
 
-extension TweetList: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tweetList.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: "Cell")
-        let tweet = tweetList[indexPath.row]
-        var content = cell.defaultContentConfiguration()
-        content.text = tweet.message
-        cell.contentConfiguration = content
-        return cell
-    }
-    
-}

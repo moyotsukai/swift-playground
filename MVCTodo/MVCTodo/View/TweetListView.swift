@@ -29,11 +29,5 @@ class TweetListView: UIView {
             .first as! TweetListView
         return view
     }
-    
-//    func loadNib() {
-//        let view = Bundle.main.loadNibNamed("TweetListView", owner: self)?.first as! UIView
-//        view.frame = self.bounds
-//        self.addSubview(view)
-//    }
 
 }

@@ -40,13 +40,32 @@ class TweetViewController: UIViewController {
 
     private func setTableView() {
         let tweetListView = self.view as! TweetListView
-        tweetListView.tableView.dataSource = tweetListModel
+        tweetListView.tableView.dataSource = self
         tweetListView.tableView.delegate = self
         tweetListView.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
     }
     
     @objc func onTapTableViewCell() {
         tweetListModel?.addTweetList()
+    }
+    
+}
+
+extension TweetViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let model = tweetListModel else { return 0 }
+        return model.tweetList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let model = tweetListModel else { return UITableViewCell() }
+        let cell = UITableViewCell(style: .default, reuseIdentifier: "Cell")
+        let tweet = model.tweetList[indexPath.row]
+        var content = cell.defaultContentConfiguration()
+        content.text = tweet.message
+        cell.contentConfiguration = content
+        return cell
     }
     
 }
